@@ -12,6 +12,7 @@ public class CameraControls : MonoBehaviour
     
     #region Variables
 
+    private float initialYPos;
     // 1. Declare a public variable of type GameObject named 'target'; We will assign it a value in the Unity Editor. 
     // This variable stores a GameObject we will make the camera follow
     public GameObject target;
@@ -28,7 +29,10 @@ public class CameraControls : MonoBehaviour
         // 3. Assign the 'positionOffset' variable a value: this camera's position - target position
         // (HINT: which component is responsible for a GameObject's position?) 
         // This line of code calculates the difference in position between the camera and its target, then stores that value in the 'positionOffset' var
+        transform.position = target.transform.position + positionOffset;
         positionOffset= transform.position - target.transform.position;
+        
+        initialYPos = transform.position.y;
     }
 
     // LateUpdate() is exactly like Update(), only it is called immediately after; Great for camera movement, animations, or physics-realted calculations
@@ -41,6 +45,7 @@ public class CameraControls : MonoBehaviour
         if (target!=null) 
         {
             Vector3 newPosition = target.transform.position - positionOffset;
+            newPosition.y = initialYPos;
 
             transform.position = newPosition;
         }
