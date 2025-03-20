@@ -52,7 +52,7 @@ public class Pickup : MonoBehaviour
         {
             isCollected = true;
             AudioManager.Instance.PlaySound("Collect Coin");
-            GameManager.Instance.UpdateScore(500);
+            GameManager.Instance.UpdateScore(1);
         }
 
             // 5. Reassign the 'isCollected' variable the value 'true';
